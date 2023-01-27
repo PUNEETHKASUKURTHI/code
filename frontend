@@ -1,0 +1,69 @@
+Copy code
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function LoginPage() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:3000/login", {
+                username,
+                password
+            });
+            console.log(response);
+        } catch (err) {
+            setError(err.response.data.message);
+        }
+    };
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Username:
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                <br />
+                <button type="submit">Login</button>
+            </form>
+            {error && <p>{error}</p>}
+        </div>
+    );
+}
+export default LoginPage;
+In the src/index.js file, import the LoginPage component and render it to the DOM.
+Copy code
+import React from 'react';
+import ReactDOM from 'react-dom';
+import LoginPage from './LoginPage';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <LoginPage />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+Start the development server using npm start or yarn start and open the application in the browser.
+This is a very simple example of a login page using React.js, in a real-world scenario, you would need to follow best practices for security, logging, and error handling as well as handling the response from the server and redirecting to a protected page or showing an error message.
+
+Also, please keep in mind that this is a basic overview of how to create a React.js login page, and you should consult the relevant documentation and best practices for more detailed information.
+
+
+
