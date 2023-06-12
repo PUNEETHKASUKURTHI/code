@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Email Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 40px;
+        }
+
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-container {
+            margin-bottom: 20px;
+        }
+
+        .dropdown-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .flag {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing Email Creator</h1>
+
+        <div class="dropdown-container">
+            <label for="sender">Sender:</label>
+            <select id="sender" class="dropdown">
+                <option value="sender1@example.com">Sender 1</option>
+                <option value="sender2@example.com">Sender 2</option>
+                <option value="sender3@example.com">Sender 3</option>
+                <option value="sender4@example.com">Sender 4</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="subject">Subject:</label>
+            <select id="subject" class="dropdown">
+                <option value="Important Security Update">Important Security Update</option>
+                <option value="Urgent Account Verification Required">Urgent Account Verification Required</option>
+                <option value="Exclusive Offer for You">Exclusive Offer for You</option>
+                <option value="Payment Confirmation">Payment Confirmation</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="content">Content:</label>
+            <select id="content" class="dropdown">
+                <option value="Please click the link below to reset your password">Please click the link below to reset your password</option>
+                <option value="You have won a prize! Click here to claim it">You have won a prize! Click here to claim it</option>
+                <option value="Your account has been compromised. Take action now!">Your account has been compromised. Take action now!</option>
+                <option value="Thank you for your recent purchase. Click here to view details">Thank you for your recent purchase. Click here to view details</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="greeting">Greeting:</label>
+            <select id="greeting" class="dropdown">
+                <option value="Dear Customer">Dear Customer</option>
+                <option value="Hello">Hello</option>
+                <option value="Greetings">Greetings</option>
+                <option value="Hi there">Hi there</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="name">Name:</label>
+            <select id="name" class="dropdown">
+                <option value="William">William</option>
+                <option value="Puneeth">Puneeth</option>
+                <option value="Collin">Collin</option>
+                <option value="Andrew">Andrew</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="link">Link:</label>
+            <select id="link" class="dropdown">
+                <option value="https://example.com">https://example.com</option>
+                <option value="https://yourwebsite.com">https://yourwebsite.com</option>
+                <option value="https://phishingsite.com">https://phishingsite.com</option>
+                <option value="https://fakeurl.com">https://fakeurl.com</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="cta">Call-to-Action:</label>
+            <select id="cta" class="dropdown">
+                <option value="Click Here">Click Here</option>
+                <option value="Get Started">Get Started</option>
+                <option value="Claim Your Reward">Claim Your Reward</option>
+                <option value="Act Now">Act Now</option>
+            </select>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="footer">Footer:</label>
+            <select id="footer" class="dropdown">
+                <option value="This email is confidential">This email is confidential</option>
+                <option value="Please do not reply to this email">Please do not reply to this email</option>
+                <option value="Copyright © 2023. All rights reserved.">Copyright © 2023. All rights reserved.</option>
+                <option value="Contact us at support@example.com">Contact us at support@example.com</option>
+            </select>
+        </div>
+
+        <button onclick="validateAnswers()">Create Phishing Email</button>
+
+        <div class="flag" id="flag"></div>
+    </div>
+
+    <script>
+        function validateAnswers() {
+            var correctAnswers = {
+                sender: 'sender3@example.com',
+                subject: 'Urgent Account Verification Required',
+                content: 'Your account has been compromised. Take action now!',
+                greeting: 'Dear Customer',
+                name: 'William',
+                link: 'https://phishingsite.com',
+                cta: 'Click Here',
+                footer: 'Please do not reply to this email'
+            };
+
+            var selectedAnswers = {
+                sender: document.getElementById("sender").value,
+                subject: document.getElementById("subject").value,
+                content: document.getElementById("content").value,
+                greeting: document.getElementById("greeting").value,
+                name: document.getElementById("name").value,
+                link: document.getElementById("link").value,
+                cta: document.getElementById("cta").value,
+                footer: document.getElementById("footer").value
+            };
+
+            var allCorrect = true;
+
+            for (var key in correctAnswers) {
+                if (correctAnswers[key] !== selectedAnswers[key]) {
+                    allCorrect = false;
+                    break;
+                }
+            }
+
+            var flagElement = document.getElementById("flag");
+            if (allCorrect) {
+                flagElement.textContent = "Congratulations! You found the flag: FLAG{PHISH}";
+            } else {
+                flagElement.textContent = "oh KNow";
+            }
+        }
+    </script>
+</body>
+</html>
