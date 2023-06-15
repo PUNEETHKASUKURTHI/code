@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Email Creator</title>
+    <style>
+        /* CSS styling here */
+    </style>
+</head>
+<body>
+    <!-- HTML code here -->
+    <script>
+        // Custom encoding function
+        function encodeFlag(flag) {
+            var encodedFlag = "";
+            for (var i = 0; i < flag.length; i++) {
+                encodedFlag += String.fromCharCode(flag.charCodeAt(i) + 1);
+            }
+            return encodedFlag;
+        }
+
+        // Decoding function for verification (not for actual display)
+        function decodeFlag(encodedFlag) {
+            var decodedFlag = "";
+            for (var i = 0; i < encodedFlag.length; i++) {
+                decodedFlag += String.fromCharCode(encodedFlag.charCodeAt(i) - 1);
+            }
+            return decodedFlag;
+        }
+
+        function validateAnswers() {
+            var encodedFlag = "$q5slmjojohVojdpso!"; // Encoded flag
+            var flag = decodeFlag(encodedFlag); // Decode the flag for verification
+
+            var correctAnswers = {
+                sender: 'sender3@example.com',
+                subject: 'Urgent Account Verification Required',
+                content: 'Your account has been compromised. Take action now!',
+                greeting: 'Dear Customer',
+                name: 'John Doe',
+                link: 'https://phishingsite.com',
+                cta: 'Click Here',
+                footer: 'Please do not reply to this email'
+            };
+
+            var selectedAnswers = {
+                sender: document.getElementById("sender").value,
+                subject: document.getElementById("subject").value,
+                content: document.getElementById("content").value,
+                greeting: document.getElementById("greeting").value,
+                name: document.getElementById("name").value,
+                link: document.getElementById("link").value,
+                cta: document.getElementById("cta").value,
+                footer: document.getElementById("footer").value
+            };
+
+            var allCorrect = true;
+
+            for (var key in correctAnswers) {
+                if (correctAnswers[key] !== selectedAnswers[key]) {
+                    allCorrect = false;
+                    break;
+                }
+            }
+
+            var flagElement = document.getElementById("flag");
+            if (allCorrect) {
+                flagElement.textContent = "Congratulations! You found the flag: " + flag;
+            } else {
+                flagElement.textContent = "Sorry, not all answers are correct.";
+            }
+        }
+    </script>
+</body>
+</html>
